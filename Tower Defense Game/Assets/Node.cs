@@ -5,6 +5,8 @@ public class Node : MonoBehaviour
 
     public Color hoverColor;
 
+    private GameObject turret;
+
     private Renderer rend;
     private Color startColor;
 
@@ -13,6 +15,18 @@ public class Node : MonoBehaviour
 
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
+    }
+
+    void OnMouseDown()
+    {
+        if (turret != null)
+        {
+            Debug.Log("Can't build there! - TODO: Dispaly on screen");
+            return;
+        }
+
+        GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
+        turret = (GameObject)Instantiate(turretToBuild, transform.position, transform.rotation);
     }
     void OnMouseEnter()
     {
