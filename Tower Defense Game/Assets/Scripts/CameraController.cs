@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour {
     public float panBorderThickness = 10f;
 
     public float scrollSpeed = 5f;
+    public float minY = 10f;
+    public float maxY = 80f;
     void Update() {
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -41,6 +43,7 @@ public class CameraController : MonoBehaviour {
         Vector3 pos = transform.position;
 
         pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
     transform.position = pos;
     }
