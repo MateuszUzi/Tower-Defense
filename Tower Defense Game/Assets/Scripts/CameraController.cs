@@ -1,10 +1,8 @@
 
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class CameraController : MonoBehaviour {
-
-
+public class CameraController : MonoBehaviour
+{
     private bool doMovement = true;
 
     public float panSpeed = 30f;
@@ -13,12 +11,13 @@ public class CameraController : MonoBehaviour {
     public float scrollSpeed = 5f;
     public float minY = 10f;
     public float maxY = 80f;
-    void Update() {
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            doMovement = !doMovement;  
-      
-       if (!doMovement)
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+            doMovement = !doMovement;
+
+        if (!doMovement)
             return;
 
         if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
@@ -33,18 +32,15 @@ public class CameraController : MonoBehaviour {
         {
             transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
         }
-        if (Input.GetKey("a") || Input.mousePosition.x <= Screen.height - panBorderThickness)
+        if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
         {
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
         }
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-
         Vector3 pos = transform.position;
-
-        pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
+        pos.y -= scroll * scrollSpeed * 1000 * Time.deltaTime;
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
-
-    transform.position = pos;
+        transform.position = pos;
     }
 }
