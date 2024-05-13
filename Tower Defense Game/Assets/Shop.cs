@@ -24,17 +24,13 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void PurchaseAnotherTurret()
+    public void PurchaseMissleLauncher()
     {
         if (buildManager != null && anotherTurretPrefab != null)
         {
-            Debug.Log("Another Turret Selected");
+            Debug.Log("Missle Launcher Selected");
             buildManager.SetTurretToBuild(anotherTurretPrefab);
         }
-        else
-        {
-            Debug.LogError("Build Manager or Another Turret Prefab is not assigned!");
-        }
+
     }
 }
- 
