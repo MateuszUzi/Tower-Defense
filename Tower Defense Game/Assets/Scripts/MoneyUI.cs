@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
-public class MoneyUI : MonoBehaviour {
+public class MoneyUI : MonoBehaviour
+{
 
-    public Text moneyText;
+    public TMP_Text moneyText;
 
 
-    void Update() {
+    void Update()
+    {
         moneyText.text = "$" + PlayerStats.Money.ToString();
-        
+
 
     }
 }

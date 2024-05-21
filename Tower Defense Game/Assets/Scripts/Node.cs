@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Node : MonoBehaviour {
+public class Node : MonoBehaviour
+{
 
     public Color hoverColor;
     public Color notEnoughMoneyColor;
@@ -55,12 +56,13 @@ public class Node : MonoBehaviour {
         if (buildManager.HasMoney)
         {
             rend.material.color = hoverColor;
-        } else
+        }
+        else
         {
             rend.material.color = notEnoughMoneyColor;
         }
 
-        
+
     }
 
     void OnMouseExit()
