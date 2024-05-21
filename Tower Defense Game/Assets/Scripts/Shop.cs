@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
@@ -6,7 +7,7 @@ public class Shop : MonoBehaviour
 
     public TurretBlueprint standardTurret;
     public TurretBlueprint missileLauncher;
-
+    public TurretBlueprint laserBeamer;
     void Start()
     {
         buildManager = BuildManager.instance;
@@ -14,23 +15,19 @@ public class Shop : MonoBehaviour
 
     public void SelectStandardTurret()
     {
-        if (buildManager == null)
-        {
-            Debug.LogError("BuildManager instance is not set.");
-            return;
-        }
-        Debug.Log("Standard Turret Selected");
-        buildManager.SelectTurretToBuild(standardTurret);
-    }
 
-    public void SelectMissileLauncher()
-    {
-        if (buildManager == null)
-        {
-            Debug.LogError("BuildManager instance is not set.");
-            return;
+            Debug.Log("StandardTurretSelected");
+            buildManager.SelectTurretToBuild(standardTurret);
         }
-        Debug.Log("Missile Launcher Selected");
+
+        public void SelectMissleLauncher()
+    {
+        Debug.Log("Missle Launcher Selected");
         buildManager.SelectTurretToBuild(missileLauncher);
+    }
+        public void SelectLaserBeamer()
+    {
+        Debug.Log("Laser Beamer Selected");
+        buildManager.SelectTurretToBuild(laserBeamer);
     }
 }
