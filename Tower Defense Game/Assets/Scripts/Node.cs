@@ -10,7 +10,7 @@ public class Node : MonoBehaviour
     [HideInInspector]
     public GameObject turret;
     [HideInInspector]
-    public TurretBlueprint turretBluePrint;
+    public TurretBlueprint turretBlueprint;
     [HideInInspector]
     public bool isUpgraded = false;
 
@@ -70,25 +70,23 @@ public class Node : MonoBehaviour
 
     public void UpgradeTurret()
     {
-        if (turretBluePrint == null)
+        if (turretBlueprint == null)
         {
             Debug.Log("No turret blueprint found!");
             return;
         }
 
-        if (PlayerStats.Money < turretBluePrint.upgradeCost)
+        if (PlayerStats.Money < turretBlueprint.upgradeCost)
         {
             Debug.Log("Not enough money to upgrade that!");
             return;
         }
 
-        PlayerStats.Money -= turretBluePrint.upgradeCost;
+        PlayerStats.Money -= turretBlueprint.upgradeCost;
 
-        // Pozb¹dŸ siê starej wie¿yczki
         Destroy(turret);
 
-        // Zbuduj now¹
-        GameObject _turret = (GameObject)Instantiate(turretBluePrint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        GameObject _turret = (GameObject)Instantiate(turretBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
         turret = _turret;
 
         GameObject effect = (GameObject)Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
@@ -97,6 +95,17 @@ public class Node : MonoBehaviour
         isUpgraded = true;
 
         Debug.Log("Turret upgraded!");
+    }
+
+    public void SellTurret()
+    {
+        PlayerStats.Money += turretBlueprint.GetSellAmount();
+
+        GameObject effect = (GameObject)Instantiate(buildManager.sellEfect, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 5f);
+
+        Destroy(turret);
+        turretBlueprint = null;
     }
 
     void OnMouseEnter()
