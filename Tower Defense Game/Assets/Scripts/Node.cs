@@ -17,7 +17,7 @@ public class Node : MonoBehaviour
     private Renderer rend;
     private Color startColor;
 
-    BuildManager buildManager;
+    private BuildManager buildManager;
 
     void Start()
     {
